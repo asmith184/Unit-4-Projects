@@ -34,28 +34,31 @@
 
 */
 
-
+//telling the init function to load on startup
 window.onload = init();
 
+
 function init(){
-   var stars = document.querySelectorAll("span#stars");
+   var stars = document.querySelectorAll("span#stars img");
    for(var i = 0; i< stars.length; i++){
-      stars[i].style.cursor = "pointer";
+      stars[i].style.cursor = "pointer"; 
       stars[i].addEventListener("mouseenter", lightStars)
    }
    document.getElementById("comment").addEventListener("keyup", updateCount);
 }
 
+
+//function saying to cue the star images when the mouse hovers over it 
 function lightStars(e){
    var starNumber = e.target.alt;
    var stars = document.querySelectorAll("span#stars img");
-   for(var i = 0; i<starNumber.length; i++){
+   for(var i = 0; i<starNumber; i++){ //pulls star image
       stars[i].src = "bw_star2.png";
    }
-   for(var j = starNumber; j<5; j++){
+   for(var j = starNumber; j<5; j++){// every time 
       stars[j].src = "bw_star.png";
    }
-   document.getElementById("rating").value = starNumber + "stars";
+   document.getElementById("rating").value = starNumber + " stars";
    e.target.addEventListener("mouseleave", turnOffStars);
 
    e.target.addEventListener("click", function(){
@@ -63,26 +66,27 @@ function lightStars(e){
    })
 }
 
+//function saying if the cursor goes off the stars to not show them anymore
 function turnOffStars(){
    var stars = document.querySelectorAll("span#stars img");
    for(var i = 0; i<stars.length; i++){
       stars[i].src = "bw_star.png";
    }
-   document.getElementById("rating") = "";
+   document.getElementById("rating").value = "";
 }
 
 function updateCount(){
    var commentText = document.getElementById("comment").value;
    var charCount = countCharacters(commentText);
    var wordCountBox = document.getElementById("wordCount");
-   document.getElementById("wordCount").innerHTML = charCount.value + "/1000";
-   if(charCount > 1000){
+   wordCountBox.value = charCount + "/1000";
+   if(charCount > 1000){ //if char count exceeds max value it is too much
       wordCount.style.color = "white";
-      wordCount.style.backgroundColor = "red";
+      wordCountBox.style.backgroundColor = "red";
    }
    else{
-      wordCount.style.color = "black";
-      wordCount.style.backgroundColor = "white";
+      wordCount.style.color = "black"; //if char count does not exceed max value it is fine
+      wordCountBox.style.backgroundColor = "white";
    }
 }  
   

@@ -5,8 +5,8 @@
    Tutorial 11
    Case Problem 2
 
-   Author: 
-   Date:   
+   Author: Aspen Smith
+   Date:   3-12-2020
    
    Filename: mt_calc.js
 	
@@ -33,7 +33,14 @@
 
 */
 
+window.onload = init();
 
+function init(){
+   var calcButtons = getElementByClassName("calcButtons");
+   for( var i = 0; i<calcButtons.length; i++){
+      
+   }
+}
 
 
 
